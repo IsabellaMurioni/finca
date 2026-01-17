@@ -5,7 +5,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { scrollFadeVariants, staggerContainerVariants, staggerItemVariants } from "@/lib/animations"
+import { scrollFadeVariants, staggerContainerVariants, staggerItemVariants } from "@/lib/easings"
 
 const featuredProducts = [
   {

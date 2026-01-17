@@ -3,7 +3,7 @@
 import { Leaf, Heart, Award, Clock } from "lucide-react"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { scrollFadeVariants, staggerContainerVariants, staggerItemVariants } from "@/lib/animations"
+import { scrollFadeVariants, staggerContainerVariants, staggerItemVariants } from "@/lib/easings"
 
 const differentiators = [
   {

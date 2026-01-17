@@ -4,7 +4,7 @@ import ContactForm from "@/components/contact/contact-form"
 import { MapPin, Phone, Mail } from "lucide-react"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { staggerContainerVariants, staggerItemVariants } from "@/lib/animations"
+import { staggerContainerVariants, staggerItemVariants } from "@/lib/easings"
 
 export default function ContactoPage() {
   const infoRef = useRef(null)
@@ -59,7 +59,7 @@ export default function ContactoPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-1">Ubicación</h3>
-                  <p className="text-muted-foreground">Buenos Aires, Argentina</p>
+                  <p className="text-muted-foreground">Ranchos, General Paz</p>
                 </div>
               </motion.div>
 
@@ -93,13 +93,10 @@ export default function ContactoPage() {
               <h3 className="font-serif text-2xl text-primary mb-4">Horarios de Atención</h3>
               <div className="space-y-2 text-muted-foreground">
                 <p>
-                  <span className="font-semibold">Lunes a Viernes:</span> 9:00 - 18:00
+                  <span className="font-semibold">Lunes a Viernes:</span> 8:00 - 16:00
                 </p>
                 <p>
-                  <span className="font-semibold">Sábados:</span> 9:00 - 13:00
-                </p>
-                <p>
-                  <span className="font-semibold">Domingos:</span> Cerrado
+                  <span className="font-semibold">Sábado y Domingo:</span> Cerrado
                 </p>
               </div>
             </motion.div>

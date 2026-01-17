@@ -63,7 +63,7 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-lg mb-4">Contacto</h4>
             <ul className="space-y-2 text-primary-foreground/80">
-              <li>Buenos Aires, Argentina</li>
+              <li>Ranchos, General Paz</li>
               <li>administracion@fincalacaramela.com.ar</li>
               <li>+54 9 11 2385 8254</li>
             </ul>

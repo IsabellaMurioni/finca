@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Check } from "lucide-react"
 import { motion } from "framer-motion"
+import emailjs from "@emailjs/browser"
 
 export default function ContactForm() {
   const [formState, setFormState] = useState({
@@ -40,31 +41,34 @@ export default function ContactForm() {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault()
+  const handleSubmit = async (e: FormEvent) => {
+  e.preventDefault()
 
-    if (!validateForm()) {
-      return
-    }
+  if (!validateForm()) return
 
-    // Simulate form submission
-    console.log("Form submitted:", formState)
+  try {
+    await emailjs.send(
+      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+      {
+        name: formState.name,
+        email: formState.email,
+        message: formState.message,
+      },
+      process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+    )
+
     setIsSubmitted(true)
 
-    // Reset form after 3 seconds
     setTimeout(() => {
       setIsSubmitted(false)
       setFormState({ name: "", email: "", message: "" })
     }, 3000)
+  } catch (error) {
+    console.error("Error enviando email:", error)
+    alert("Hubo un error al enviar el mensaje")
   }
-
-  const handleChange = (field: string, value: string) => {
-    setFormState((prev) => ({ ...prev, [field]: value }))
-    // Clear error when user starts typing
-    if (errors[field]) {
-      setErrors((prev) => ({ ...prev, [field]: "" }))
-    }
-  }
+}
 
   if (isSubmitted) {
     return (

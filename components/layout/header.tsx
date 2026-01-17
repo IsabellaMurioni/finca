@@ -45,9 +45,9 @@ export default function Header() {
             <Image
               src="/logo.png"
               alt="Finca La Caramela"
-              width={128}
-              height={128}
-              className="h-20 w-20 md:h-28 md:w-28 lg:h-32 lg:w-32"
+              width={180}
+              height={180}
+              className="h-32 w-32 md:h-40 md:w-40 lg:h-44 lg:w-44"
             />
             <span className="sr-only">Finca La Caramela</span>
           </Link>

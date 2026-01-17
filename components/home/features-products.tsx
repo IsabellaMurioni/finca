@@ -6,13 +6,21 @@ import { useRef, useState } from "react"
 import { staggerContainerVariants, staggerItemVariants } from "@/lib/easings"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
-import { products, type Product } from "@/lib/products"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { getProductsByIds, type Product } from "@/lib/products"
 
-export default function ProductosPage() {
+// IDs de los productos destacados que querés mostrar en el inicio
+const FEATURED_PRODUCT_IDS = [2, 3, 4]
+
+export default function FeaturedProducts() {
   const gridRef = useRef(null)
   const isGridInView = useInView(gridRef, { once: true, margin: "-50px" })
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+  // Obtener solo los productos destacados por ID
+  const featuredProducts = getProductsByIds(FEATURED_PRODUCT_IDS)
 
   const handleProductClick = (product: Product) => {
     setSelectedProduct(product)
@@ -39,55 +47,54 @@ export default function ProductosPage() {
   const currentVariant = selectedProduct?.variants[currentImageIndex]
 
   return (
-    <motion.main
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
-      className="min-h-screen"
-    >
-      {/* Hero Section */}
-      <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-secondary">
+    <section className="py-20 bg-background">
+      <div className="max-w-7xl mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative z-10 text-center px-4 max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
         >
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="font-serif text-5xl md:text-7xl mb-6 text-primary"
-          >
-            Nuestros Productos
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-xl md:text-2xl text-muted-foreground font-light leading-relaxed"
-          >
-            Cada variedad elaborada con dedicación artesanal y los mejores ingredientes
-          </motion.p>
+          <h2 className="font-serif text-4xl md:text-5xl text-primary mb-4">Productos Destacados</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Descubrí nuestras líneas más populares</p>
         </motion.div>
-      </section>
 
-      {/* Products Grid */}
-      <section ref={gridRef} className="max-w-7xl mx-auto px-4 py-20">
+        {/* Products Grid */}
+        <div ref={gridRef}>
+          <motion.div
+            variants={staggerContainerVariants}
+            initial="hidden"
+            animate={isGridInView ? "visible" : "hidden"}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {featuredProducts.map((product) => (
+              <motion.div key={product.id} variants={staggerItemVariants}>
+                <ProductCard product={product} onClick={() => handleProductClick(product)} />
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Ver todos los productos button */}
         <motion.div
-          variants={staggerContainerVariants}
-          initial="hidden"
-          animate={isGridInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-center mt-12"
         >
-          {products.map((product) => (
-            <motion.div key={product.id} variants={staggerItemVariants}>
-              <ProductCard product={product} onClick={() => handleProductClick(product)} />
+          <Link href="/productos">
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+              <Button size="lg" className="text-lg px-8 py-6 group bg-[#5b3a29] text-white border border-transparent hover:bg-transparent hover:border-[#5b3a29] hover:text-[#5b3a29] transition-colors duration-300">
+                Ver todos los productos
+              </Button>
             </motion.div>
-          ))}
+          </Link>
         </motion.div>
-      </section>
+      </div>
 
+      {/* Modal - exactamente igual que en la página de productos */}
       <AnimatePresence>
         {selectedProduct && (
           <>
@@ -287,28 +294,6 @@ export default function ProductosPage() {
           </>
         )}
       </AnimatePresence>
-
-      {/* Info Section */}
-      <section className="bg-secondary/30 py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="max-w-4xl mx-auto px-4 text-center space-y-6"
-        >
-          <h2 className="font-serif text-4xl text-primary">Calidad en Cada Frasco</h2>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Desde nuestra planta en Ranchos, provincia de Buenos Aires, seguimos creciendo como empresa familiar,
-            combinando experiencia, desarrollo y compromiso, para llevar a todo el país un dulce de leche que represente
-            nuestra historia, nuestra pasión y nuestra manera de hacer las cosas.
-          </p>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Cada frasco es una expresión de ese propósito: compartir un producto auténtico, fiel a su origen y pensado
-            para perdurar.
-          </p>
-        </motion.div>
-      </section>
-    </motion.main>
+    </section>
   )
 }

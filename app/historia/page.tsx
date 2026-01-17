@@ -3,7 +3,7 @@
 import Image from "next/image"
 import { motion, useScroll, useTransform, useInView } from "framer-motion"
 import { useRef } from "react"
-import { revealVariants, scrollFadeVariants } from "@/lib/animations"
+import { revealVariants, scrollFadeVariants } from "@/lib/easings"
 
 export default function HistoriaPage() {
   const heroRef = useRef(null)
@@ -70,9 +70,7 @@ export default function HistoriaPage() {
           >
             <h2 className="font-serif text-4xl text-primary">El Comienzo</h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              La historia de nuestro dulce de leche comienza mucho antes de la fundación de Finca La Caramela. 
-              Nuestra impronta nace de una tradición familiar que se remonta a 1939, cuando una receta clásica dio sus primeros pasos. 
-              A lo largo de los años, nuestros fundadores atravesaron distintos emprendimientos, impulsados por la misma pasión y convicción.
+              La historia de nuestro dulce de leche se remonta a 1939, con una receta clásica y una tradición familiar ligada a la producción del dulce de leche. A lo largo de los años, nuestros fundadores recorrieron distintos emprendimientos, siempre impulsados por la misma pasión y convicción por este producto que nos representa.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
               Desde entonces, la pasión por este producto nos acompaña y define nuestro camino.
@@ -116,11 +114,9 @@ export default function HistoriaPage() {
           >
             <h2 className="font-serif text-4xl text-primary">Nuestro Proceso</h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              En 2016 nace Finca La Caramela, como resultado de años de experiencia en la industria. Producimos nuestro dulce de leche en Ranchos, provincia de Buenos Aires.
-            </p>
+Nuestra planta productiva se encuentra en Ranchos, partido de General Paz, provincia de Buenos Aires, un pueblo ubicado a 100 km de la Capital Federal. Esta localización estratégica nos permite desarrollar con eficiencia nuestra actividad productiva y comercial.     </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Esta es una localización estratégica que nos permite desarrollar nuestra actividad comercial y productiva con eficiencia, cuidando cada etapa del proceso para garantizar calidad y sabor.
-            </p>
+Actualmente, Finca La Caramela continúa siendo una empresa familiar que crece año a año, manteniendo la misma impronta de sus inicios            </p>
           </motion.div>
         </div>
 
@@ -134,11 +130,9 @@ export default function HistoriaPage() {
         >
           <h2 className="font-serif text-4xl text-primary">Nuestro Compromiso</h2>
           <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            Finca La Caramela continúa siendo una empresa familiar, que crece año a año manteniendo su esencia, con un desarrollo industrial que nos permite llegar a todo el país
-          </p>
+En Finca La Caramela trabajamos con un objetivo claro: sostener altos estándares de calidad y excelencia en cada producto.          </p>
           <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            Año a año reafirmamos nuestro compromiso con la excelencia, la tradición y la elaboración de un dulce de leche que refleje nuestra historia y nuestros valores.
-          </p>
+Honramos la tradición que nos define y apostamos al desarrollo industrial necesario para llevar nuestro dulce de leche a todo el país, reflejando en cada frasco nuestra historia y nuestros valores.          </p>
         </motion.div>
 
         {/* Quote */}

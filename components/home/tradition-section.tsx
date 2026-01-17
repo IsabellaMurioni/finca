@@ -5,7 +5,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { motion, useInView, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
-import { revealVariants, scrollFadeVariants } from "@/lib/animations"
+import { revealVariants, scrollFadeVariants } from "@/lib/easings"
 
 export default function TraditionSection() {
   const ref = useRef(null)
@@ -60,8 +60,7 @@ export default function TraditionSection() {
               transition={{ delay: 0.4, duration: 0.8 }}
               className="text-lg text-muted-foreground leading-relaxed"
             >
-              En Finca La Caramela, cada frasco cuenta una historia. La historia de una familia argentina que lleva
-              generaciones perfeccionando el arte del dulce de leche artesanal.
+              En Finca La Caramela elaboramos dulce de leche con un propósito claro: honrar la tradición argentina mientras incorporamos procesos productivos modernos que garantizan calidad, sabor y consistencia en cada frasco.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -69,7 +68,7 @@ export default function TraditionSection() {
               transition={{ delay: 0.6, duration: 0.8 }}
               className="text-lg text-muted-foreground leading-relaxed"
             >
-              Tras largos años de trabajo y dedicación, en 2016 nace Finca La Caramela S.R.L., reflejo de una visión amplia y una profunda conexión con ese producto original que nos inspira.
+              Nuestra historia nace del trabajo, la experiencia y la dedicación de una familia argentina que, tras años de aprendizaje en la industria, en 2016 da origen a Finca La Caramela S.R.L. como expresión de una visión sólida y un compromiso genuino con este producto emblemático.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -77,7 +76,7 @@ export default function TraditionSection() {
               transition={{ delay: 0.8, duration: 0.8 }}
               className="text-lg text-muted-foreground leading-relaxed"
             >
-              Gracias a la experiencia en la industria y a nuestra constante capacidad de adaptación, consolidamos una marca que hoy se distingue por la calidad, el sabor y la excelencia de cada uno de nuestros dulces.
+              Así construimos una marca que busca ser referente del dulce de leche argentino, reconocida por su sabor auténtico, la confianza que genera y una búsqueda permanente de excelencia.
             </motion.p>
 
             <motion.div

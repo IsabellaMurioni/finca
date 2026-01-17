@@ -1,5 +1,5 @@
 import Hero from "@/components/home/hero"
-import ProductsSection from "@/components/home/products-section"
+import ProductsSection from "@/components/home/features-products"
 import TraditionSection from "@/components/home/tradition-section"
 import DifferentiatorsSection from "@/components/home/differentiators-section"
 import CtaSection from "@/components/home/cta-section"

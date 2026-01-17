@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { scrollFadeVariants } from "@/lib/animations"
+import { scrollFadeVariants } from "@/lib/easings"
 
 export default function CtaSection() {
   const ref = useRef(null)
