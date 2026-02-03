@@ -3,6 +3,7 @@ export interface ProductVariant {
   image: string
   weight: string
   features: string[]
+  subtitle?: string
 }
 
 export interface Product {
@@ -15,38 +16,7 @@ export interface Product {
 // Datos centralizados de productos
 export const products: Product[] = [
   {
-    id: 2,
-    name: "Línea Anamá Clásico",
-    description:
-      "Variedad clásica premium, con ingredientes seleccionados, elaboradas para lograr una textura suave y un sabor auténtico.",
-    variants: [
-      {
-        image: "/anama2.png",
-        weight: "400g",
-        features: ["Formato de 400 gramos: 12 unidades por caja", "Textura suave y cremosa", "Vida útil de 8 meses"],
-      },
-      {
-        image: "/anama10.png",
-        weight: "10kg",
-        features: [
-          "Formato de 10 kg: familiar y repostero",
-          "Envase de cartón. Textura firme, ideal para repostería",
-          "Vida útil de 3 meses",
-        ],
-      },
-      {
-        image: "/anama25.png",
-        weight: "25kg",
-        features: [
-          "Formato de 25 kg: familiar, repostero y heladero",
-          "Envase primario en bolsa plástica y secundario en pote de cartón",
-          "Vida útil de 1 año",
-        ],
-      },
-    ],
-  },
-  {
-    id: 3,
+    id: 1,
     name: "Línea Familiar",
     description:
       "Presentaciones pensadas para el consumo diario en casa, con el sabor tradicional de siempre y la cremosidad justa.",
@@ -117,7 +87,7 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 4,
+    id: 2,
     name: "Línea Repostero",
     description:
       "Consistencia firme e ideal para alfajores, tortas y rellenos, excelente desempeño en aplicaciones de pastelería.",
@@ -152,10 +122,10 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 6,
+    id: 3,
     name: "Línea Heladero",
     description:
-      "Formulada especialmente para heladerías artesanales, ofreciendo una textura homogénea, excelente rendimiento y un sabor auténtico.",
+      "Formulada especialmente para heladerías artesanales, ofreciendo una textura homogénea y un sabor auténtico.",
     variants: [
       {
         image: "/heladero12.png",
@@ -174,16 +144,92 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 7,
+    id: 4,
+    name: "Línea Anamá Clásico",
+    description:
+      "Variedad clásica premium, con ingredientes seleccionados, elaboradas para lograr una textura suave y un sabor auténtico.",
+    variants: [
+      {
+        image: "/anama2.png",
+        weight: "400g",
+        features: ["Formato de 400 gramos: 12 unidades por caja", "Textura suave y cremosa", "Vida útil de 8 meses"],
+      },
+      {
+        image: "/anama10.png",
+        weight: "10kg",
+        features: [
+          "Formato de 10 kg: familiar y repostero",
+          "Envase de cartón. Textura firme, ideal para repostería",
+          "Vida útil de 3 meses",
+        ],
+      },
+      {
+        image: "/anama25.png",
+        weight: "25kg",
+        features: [
+          "Formato de 25 kg: familiar, repostero y heladero",
+          "Envase primario en bolsa plástica y secundario en pote de cartón",
+          "Vida útil de 1 año",
+        ],
+      },
+    ],
+  },
+  {
+    id: 5,
     name: "Línea Dutella",
     description:
-      "La fusión perfecta entre dulce de leche y crema de avellanas, con una textura sedosa y un sabor profundo que conquista desde la primera cucharada.",
+      "La fusión perfecta entre dulce de leche y crema de avellanas, con un sabor profundo que conquista desde la primera cucharada.",
     variants: [
       {
         image: "/dutella.png",
         weight: "4kg",
         features: ["Formato de 4kg", "Ideal para gastronomía con: avellanas, chocolates, cookies, banana, rhum y café", "Vida útil de 1 año"],
       },
+    ],
+  },
+  
+  {
+    id: 6,
+    name: "Variegatos",
+    description:
+      "Elaborados con ingredientes seleccionados que garantizan una textura perfecta y un sabor auténtico.",
+    variants: [
+      {
+        image: "/cookies.png",
+        weight: "10/25kg",
+        subtitle: "Cookies",
+        features: [
+          "Formato de 25 kg: familiar, repostero y heladero",
+          "Envase primario en bolsa plástica y secundario en pote de cartón",
+          "Vida útil de 1 año",
+        ],
+      },
+      {
+        image: "/cafe.png",
+        weight: "10/25kg",
+        subtitle: "Café",
+        features: ["Formato de 400 gramos: 12 unidades por caja", "Textura suave y cremosa", "Vida útil de 8 meses"],
+      },
+      {
+        image: "/rhum.png",
+        weight: "10/25kg",
+        subtitle: "Rhum",
+        features: [
+          "Formato de 10 kg: familiar y repostero",
+          "Envase de cartón. Textura firme, ideal para repostería",
+          "Vida útil de 3 meses",
+        ],
+      },
+      {
+        image: "/banana.png",
+        weight: "10/25kg",
+        subtitle: "Banana",
+        features: [
+          "Formato de 25 kg: familiar, repostero y heladero",
+          "Envase primario en bolsa plástica y secundario en pote de cartón",
+          "Vida útil de 1 año",
+        ],
+      }
     ],
   },
 ]

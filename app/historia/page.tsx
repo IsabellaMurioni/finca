@@ -61,7 +61,7 @@ export default function HistoriaPage() {
       {/* Story Content */}
       <section className="max-w-4xl mx-auto px-4 py-20 space-y-16">
         {/* Story Block 1 */}
-        <div ref={block1Ref} className="grid md:grid-cols-2 gap-12 items-center">
+        <div ref={block1Ref} className="grid md:grid-cols-2 gap-12 items-center text-center md:text-left">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={isBlock1InView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
@@ -92,7 +92,7 @@ export default function HistoriaPage() {
         </div>
 
         {/* Story Block 2 */}
-        <div ref={block2Ref} className="grid md:grid-cols-2 gap-12 items-center">
+        <div ref={block2Ref} className="grid md:grid-cols-2 gap-12 items-center text-center md:text-left">
           <motion.div
             variants={revealVariants}
             initial="hidden"

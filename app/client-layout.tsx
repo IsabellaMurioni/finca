@@ -5,6 +5,7 @@ import { Inter, Playfair_Display } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import Header from "@/components/layout/header"
 import Footer from "@/components/layout/footer"
+import WhatsAppButton from "@/components/whatsapp-button"
 import { MotionConfig } from "framer-motion"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
@@ -22,6 +23,7 @@ export default function ClientLayout({
           <Header />
           <main className="pt-24 md:pt-28 lg:pt-28">{children}</main>
           <Footer />
+          <WhatsAppButton />
           <Analytics />
         </MotionConfig>
       </body>

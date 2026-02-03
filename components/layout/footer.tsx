@@ -8,16 +8,16 @@ export default function Footer() {
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 text-center md:text-left">
           {/* Brand */}
           <div className="md:col-span-2 space-y-4">
-            <Link href="/" className="block -ml-2">
+            <Link href="/" className="block -ml-2 flex justify-center md:block">
               <Image
                 src="/logo-footer.png"
                 alt="Finca La Caramela"
                 width={520}
                 height={180}
-                className="h-28 md:h-36 lg:h-44 object-contain object-left"
+                className="h-28 md:h-36 lg:h-44 object-contain"
               />
               <span className="sr-only">Finca La Caramela</span>
             </Link>
@@ -67,7 +67,7 @@ export default function Footer() {
               <li>administracion@fincalacaramela.com.ar</li>
               <li>+54 9 11 2385 8254</li>
             </ul>
-            <div className="flex gap-4 mt-6">
+            <div className="flex gap-4 mt-6 justify-center md:justify-start">
               <a
                 href="https://instagram.com"
                 target="_blank"

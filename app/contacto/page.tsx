@@ -31,7 +31,7 @@ export default function ContactoPage() {
       </section>
 
       <section className="max-w-6xl mx-auto px-4 py-20">
-        <div className="grid md:grid-cols-2 gap-16">
+        <div className="grid md:grid-cols-2 gap-16 text-center md:text-left">
           {/* Contact Info */}
           <div className="space-y-12">
             <motion.div
@@ -53,31 +53,31 @@ export default function ContactoPage() {
               animate={isInfoInView ? "visible" : "hidden"}
               className="space-y-6"
             >
-              <motion.div variants={staggerItemVariants} className="flex items-start gap-4">
+              <motion.div variants={staggerItemVariants} className="flex flex-col items-center md:flex-row md:items-start gap-4">
                 <div className="bg-accent/10 p-3 rounded-full">
                   <MapPin className="w-6 h-6 text-accent" />
                 </div>
-                <div>
+                <div className="text-center md:text-left">
                   <h3 className="font-semibold text-lg mb-1">Ubicación</h3>
                   <p className="text-muted-foreground">Ranchos, General Paz</p>
                 </div>
               </motion.div>
 
-              <motion.div variants={staggerItemVariants} className="flex items-start gap-4">
+              <motion.div variants={staggerItemVariants} className="flex flex-col items-center md:flex-row md:items-start gap-4">
                 <div className="bg-accent/10 p-3 rounded-full">
                   <Phone className="w-6 h-6 text-accent" />
                 </div>
-                <div>
+                <div className="text-center md:text-left">
                   <h3 className="font-semibold text-lg mb-1">Teléfono</h3>
                   <p className="text-muted-foreground">+54 9 11 2385 8254</p>
                 </div>
               </motion.div>
 
-              <motion.div variants={staggerItemVariants} className="flex items-start gap-4">
+              <motion.div variants={staggerItemVariants} className="flex flex-col items-center md:flex-row md:items-start gap-4">
                 <div className="bg-accent/10 p-3 rounded-full">
                   <Mail className="w-6 h-6 text-accent" />
                 </div>
-                <div>
+                <div className="text-center md:text-left">
                   <h3 className="font-semibold text-lg mb-1">Email</h3>
                   <p className="text-muted-foreground">administracion@fincalacaramela.com.ar</p>
                 </div>

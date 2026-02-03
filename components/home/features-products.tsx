@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button"
 import { getProductsByIds, type Product } from "@/lib/products"
 
 // IDs de los productos destacados que querés mostrar en el inicio
-const FEATURED_PRODUCT_IDS = [2, 3, 4]
+const FEATURED_PRODUCT_IDS = [1, 2, 3]
 
 export default function FeaturedProducts() {
   const gridRef = useRef(null)
@@ -114,22 +114,23 @@ export default function FeaturedProducts() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="fixed inset-4 md:inset-8 lg:inset-16 z-50 flex items-center justify-center"
+              className="fixed inset-0 z-50 flex items-center justify-center p-1 sm:p-2 md:p-4 lg:p-8"
             >
-              <div className="relative w-full h-full max-w-7xl bg-background rounded-[20px] shadow-2xl overflow-hidden">
+              <div className="relative w-full max-w-7xl max-h-[calc(100vh-16px)] sm:max-h-[95vh] bg-background rounded-[20px] shadow-2xl overflow-hidden flex flex-col">
+
                 {/* Close Button */}
                 <button
                   onClick={closeModal}
-                  className="absolute right-6 top-6 z-20 p-3 bg-background/90 backdrop-blur-md rounded-full hover:bg-background hover:scale-110 transition-all shadow-lg"
+                  className="absolute top-2 right-2 sm:top-6 sm:right-6 z-20 p-2 hover:opacity-80 transition-opacity"
                   aria-label="Cerrar modal"
                 >
                   <X className="w-6 h-6 text-primary" />
                 </button>
 
                 {/* Content: Horizontal Layout */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
+                <div className="grid grid-cols-1 lg:grid-cols-2 h-full overflow-y-auto">
                   {/* Left Side: Large Image with Carousel */}
-                  <div className="relative bg-secondary/30 flex items-center justify-center p-8 lg:p-12">
+                  <div className="relative flex items-start sm:items-center justify-center p-0 sm:bg-secondary/30 sm:p-6 md:p-8 lg:p-12 min-h-[280px] sm:min-h-auto">
                     <div className="relative w-full max-w-xl">
                       <AnimatePresence mode="wait">
                         <motion.div
@@ -142,7 +143,7 @@ export default function FeaturedProducts() {
                           style={{
                             aspectRatio: "auto",
                             height: "auto",
-                            maxHeight: "600px",
+                            maxHeight: "clamp(300px, 70vw, 500px)",
                           }}
                         >
                           <Image
@@ -150,7 +151,7 @@ export default function FeaturedProducts() {
                             alt={`${selectedProduct.name} - Imagen ${currentImageIndex + 1}`}
                             width={800}
                             height={600}
-                            className="w-full h-auto object-contain rounded-[20px]"
+                            className="w-full h-full object-contain rounded-[20px]"
                             sizes="(max-width: 1024px) 100vw, 50vw"
                           />
                         </motion.div>
@@ -211,12 +212,12 @@ export default function FeaturedProducts() {
                   </div>
 
                   {/* Right Side: Product Information */}
-                  <div className="flex flex-col justify-center p-8 lg:p-12 overflow-y-auto">
+                  <div className="flex flex-col justify-center px-3 py-3 sm:p-4 md:p-6 lg:p-8 overflow-hidden">
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.2 }}
-                      className="space-y-8"
+                      className="space-y-2 sm:space-y-3 md:space-y-4"
                     >
                       {/* Weight Badge */}
                       <AnimatePresence mode="wait">
@@ -226,9 +227,9 @@ export default function FeaturedProducts() {
                           animate={{ opacity: 1, scale: 1 }}
                           exit={{ opacity: 0, scale: 0.9 }}
                           transition={{ duration: 0.3 }}
-                          className="inline-block"
+                          className="inline-block mt-1 sm:mt-0"
                         >
-                          <span className="inline-flex items-center gap-2 text-lg font-semibold bg-accent/20 text-accent px-6 py-3 rounded-full">
+                          <span className="inline-flex items-center gap-2 text-sm sm:text-base font-semibold bg-accent/20 text-accent px-4 sm:px-6 py-2 sm:py-3 rounded-full">
                             {currentVariant?.weight}
                           </span>
                         </motion.div>
@@ -239,10 +240,22 @@ export default function FeaturedProducts() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.4 }}
-                        className="font-serif text-4xl lg:text-5xl text-primary leading-tight"
+                        className="font-serif text-lg sm:text-xl md:text-3xl lg:text-4xl text-primary leading-tight"
                       >
                         {selectedProduct.name}
                       </motion.h2>
+
+                      {/* Subtitle - only for product 6 (Variegatos) */}
+                      {selectedProduct.id === 6 && currentVariant?.subtitle && (
+                        <motion.p
+                          initial={{ opacity: 0, y: 5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: 0.45 }}
+                          className="text-xs sm:text-sm md:text-base text-accent font-medium italic"
+                        >
+                          Sabor: {currentVariant.subtitle}
+                        </motion.p>
+                      )}
 
                       {/* Divider */}
                       <motion.div
@@ -257,7 +270,7 @@ export default function FeaturedProducts() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.6 }}
-                        className="text-xl text-muted-foreground leading-relaxed"
+                        className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed"
                       >
                         {selectedProduct.description}
                       </motion.p>
@@ -281,7 +294,7 @@ export default function FeaturedProducts() {
                               className="flex items-start gap-3"
                             >
                               <div className="w-2 h-2 rounded-full bg-accent mt-2" />
-                              <p className="text-muted-foreground">{feature}</p>
+                              <p className="text-xs sm:text-sm text-muted-foreground">{feature}</p>
                             </motion.div>
                           ))}
                         </motion.div>

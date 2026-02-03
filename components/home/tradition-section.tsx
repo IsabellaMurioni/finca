@@ -44,7 +44,7 @@ export default function TraditionSection() {
             variants={scrollFadeVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            className="space-y-6 md:h-[600px] md:flex md:flex-col md:justify-center"
+            className="space-y-6 text-center md:text-left md:h-[600px] md:flex md:flex-col md:justify-center"
           >
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
