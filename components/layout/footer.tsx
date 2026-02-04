@@ -69,7 +69,7 @@ export default function Footer() {
             </ul>
             <div className="flex gap-4 mt-6 justify-center md:justify-start">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/fincalacaramela.srl/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-primary-foreground/10 p-2 rounded-full hover:bg-primary-foreground/20 transition-colors"
@@ -78,7 +78,7 @@ export default function Footer() {
                 <Instagram className="w-5 h-5" />
               </a>
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/fincalacaramela/?locale=es_LA"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-primary-foreground/10 p-2 rounded-full hover:bg-primary-foreground/20 transition-colors"
@@ -86,13 +86,13 @@ export default function Footer() {
               >
                 <Facebook className="w-5 h-5" />
               </a>
-              <a
-                href="mailto:hola@fincalacaramela.com.ar"
+              <Link
+                href="/contacto"
                 className="bg-primary-foreground/10 p-2 rounded-full hover:bg-primary-foreground/20 transition-colors"
                 aria-label="Email"
               >
                 <Mail className="w-5 h-5" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

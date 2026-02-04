@@ -15,8 +15,17 @@ export default function ContactForm() {
     email: "",
     message: "",
   })
+
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleChange = (field: string, value: string) => {
+    setFormState((prev) => ({
+      ...prev,
+      [field]: value,
+    }))
+  }
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {}
@@ -42,168 +51,112 @@ export default function ContactForm() {
   }
 
   const handleSubmit = async (e: FormEvent) => {
-  e.preventDefault()
+    e.preventDefault()
+    if (!validateForm()) return
 
-  if (!validateForm()) return
+    setIsLoading(true)
 
-  try {
-    await emailjs.send(
-      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-      {
-        name: formState.name,
-        email: formState.email,
-        message: formState.message,
-      },
-      process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
-    )
+    try {
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        {
+          name: formState.name,
+          email: formState.email,
+          message: formState.message,
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      )
 
-    setIsSubmitted(true)
+      setIsSubmitted(true)
 
-    setTimeout(() => {
-      setIsSubmitted(false)
-      setFormState({ name: "", email: "", message: "" })
-    }, 3000)
-  } catch (error) {
-    console.error("Error enviando email:", error)
-    alert("Hubo un error al enviar el mensaje")
+      setTimeout(() => {
+        setIsSubmitted(false)
+        setFormState({ name: "", email: "", message: "" })
+      }, 3000)
+    } catch (error) {
+      console.error("Error enviando email:", error)
+      alert("Hubo un error al enviar el mensaje")
+    } finally {
+      setIsLoading(false)
+    }
   }
-}
 
   if (isSubmitted) {
     return (
       <motion.div
         initial={{ opacity: 0, scale: 0.9, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+        transition={{ duration: 0.5 }}
         className="bg-accent/10 border-2 border-accent rounded-lg p-12 text-center space-y-4"
       >
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.2, duration: 0.5, ease: [0.34, 1.56, 0.64, 1] }}
-          className="inline-flex items-center justify-center w-16 h-16 bg-accent rounded-full mb-4"
-        >
+        <div className="inline-flex items-center justify-center w-16 h-16 bg-accent rounded-full mb-4">
           <Check className="w-8 h-8 text-white" />
-        </motion.div>
-        <motion.h3
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-          className="font-serif text-3xl text-primary"
-        >
-          ¡Mensaje Enviado!
-        </motion.h3>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="text-muted-foreground text-lg"
-        >
+        </div>
+
+        <h3 className="font-serif text-3xl text-primary">
+          ¡Mensaje enviado!
+        </h3>
+
+        <p className="text-muted-foreground text-lg">
           Gracias por contactarnos. Te responderemos a la brevedad.
-        </motion.p>
+        </p>
       </motion.div>
     )
   }
 
   return (
     <motion.form
+      onSubmit={handleSubmit}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      onSubmit={handleSubmit}
       className="space-y-6 bg-secondary/20 p-8 rounded-lg"
     >
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.1, duration: 0.5 }}
-        className="space-y-2"
-      >
-        <Label htmlFor="name" className="text-base font-semibold">
-          Nombre Completo *
-        </Label>
-        <motion.div whileFocus={{ scale: 1.01 }} transition={{ duration: 0.2 }}>
-          <Input
-            id="name"
-            type="text"
-            value={formState.name}
-            onChange={(e) => handleChange("name", e.target.value)}
-            className={`h-12 text-base transition-all ${errors.name ? "border-red-500" : ""}`}
-            placeholder="Nombre y Apellido"
-          />
-        </motion.div>
-        {errors.name && (
-          <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-sm text-red-500">
-            {errors.name}
-          </motion.p>
-        )}
-      </motion.div>
+      <div className="space-y-2">
+        <Label htmlFor="name">Nombre completo *</Label>
+        <Input
+          id="name"
+          value={formState.name}
+          onChange={(e) => handleChange("name", e.target.value)}
+          className={errors.name ? "border-red-500" : ""}
+          placeholder="Nombre y apellido"
+        />
+        {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
+      </div>
 
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.2, duration: 0.5 }}
-        className="space-y-2"
-      >
-        <Label htmlFor="email" className="text-base font-semibold">
-          Email *
-        </Label>
-        <motion.div whileFocus={{ scale: 1.01 }} transition={{ duration: 0.2 }}>
-          <Input
-            id="email"
-            type="email"
-            value={formState.email}
-            onChange={(e) => handleChange("email", e.target.value)}
-            className={`h-12 text-base transition-all ${errors.email ? "border-red-500" : ""}`}
-            placeholder="email@ejemplo.com"
-          />
-        </motion.div>
-        {errors.email && (
-          <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-sm text-red-500">
-            {errors.email}
-          </motion.p>
-        )}
-      </motion.div>
+      <div className="space-y-2">
+        <Label htmlFor="email">Email *</Label>
+        <Input
+          id="email"
+          type="email"
+          value={formState.email}
+          onChange={(e) => handleChange("email", e.target.value)}
+          className={errors.email ? "border-red-500" : ""}
+          placeholder="email@ejemplo.com"
+        />
+        {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
+      </div>
 
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.3, duration: 0.5 }}
-        className="space-y-2"
-      >
-        <Label htmlFor="message" className="text-base font-semibold">
-          Mensaje *
-        </Label>
-        <motion.div whileFocus={{ scale: 1.01 }} transition={{ duration: 0.2 }}>
-          <Textarea
-            id="message"
-            value={formState.message}
-            onChange={(e) => handleChange("message", e.target.value)}
-            className={`min-h-[150px] text-base transition-all ${errors.message ? "border-red-500" : ""}`}
-            placeholder="Contanos en qué podemos ayudarte..."
-          />
-        </motion.div>
-        {errors.message && (
-          <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-sm text-red-500">
-            {errors.message}
-          </motion.p>
-        )}
-      </motion.div>
+      <div className="space-y-2">
+        <Label htmlFor="message">Mensaje *</Label>
+        <Textarea
+          id="message"
+          value={formState.message}
+          onChange={(e) => handleChange("message", e.target.value)}
+          className={errors.message ? "border-red-500" : ""}
+          placeholder="Contanos en qué podemos ayudarte…"
+        />
+        {errors.message && <p className="text-sm text-red-500">{errors.message}</p>}
+      </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4, duration: 0.5 }}
-      >
-        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-          <Button type="submit" size="lg" className="w-full text-lg py-6">
-            Enviar Mensaje
-          </Button>
-        </motion.div>
-      </motion.div>
+      <Button type="submit" size="lg" disabled={isLoading} className="w-full">
+        {isLoading ? "Enviando..." : "Enviar mensaje"}
+      </Button>
 
-      <p className="text-sm text-muted-foreground text-center">* Campos requeridos</p>
+      <p className="text-sm text-muted-foreground text-center">
+        * Campos requeridos
+      </p>
     </motion.form>
   )
 }

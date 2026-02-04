@@ -116,7 +116,23 @@ export default function FeaturedProducts() {
               transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="fixed inset-0 z-50 flex items-center justify-center p-1 sm:p-2 md:p-4 lg:p-8"
             >
-              <div className="relative w-full max-w-7xl max-h-[calc(100vh-16px)] sm:max-h-[95vh] bg-background rounded-[20px] shadow-2xl overflow-hidden flex flex-col">
+              <div
+                className="
+                  relative
+                  w-full
+                  max-w-[1100px]
+                  h-auto
+                  sm:h-[88vh]
+                  max-h-[none]
+                  sm:max-h-[820px]
+                  bg-background
+                  rounded-[20px]
+                  shadow-2xl
+                  overflow-hidden
+                  flex
+                  flex-col
+                "
+              >
 
                 {/* Close Button */}
                 <button
@@ -212,7 +228,7 @@ export default function FeaturedProducts() {
                   </div>
 
                   {/* Right Side: Product Information */}
-                  <div className="flex flex-col justify-center px-3 py-3 sm:p-4 md:p-6 lg:p-8 overflow-hidden">
+                  <div className="flex flex-col justify-start sm:justify-center px-3 pt-3 pb-8 sm:pb-0 sm:py-4 sm:p-4 md:p-6 lg:p-8 overflow-hidden">
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}

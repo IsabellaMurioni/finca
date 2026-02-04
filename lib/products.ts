@@ -199,25 +199,25 @@ export const products: Product[] = [
         weight: "10/25kg",
         subtitle: "Cookies",
         features: [
-          "Formato de 25 kg: familiar, repostero y heladero",
-          "Envase primario en bolsa plástica y secundario en pote de cartón",
-          "Vida útil de 1 año",
+          "Formato de 10 kg y 25 kg",
+          "Envase en pote de cartón, apto para uso alimentario",
+          "Vida útil prolongada",
         ],
       },
       {
         image: "/cafe.png",
         weight: "10/25kg",
         subtitle: "Café",
-        features: ["Formato de 400 gramos: 12 unidades por caja", "Textura suave y cremosa", "Vida útil de 8 meses"],
+        features: ["Formato de 10 kg y 25 kg", "Envase en pote de cartón, apto para uso alimentario", "Vida útil prolongada"],
       },
       {
         image: "/rhum.png",
         weight: "10/25kg",
         subtitle: "Rhum",
         features: [
-          "Formato de 10 kg: familiar y repostero",
-          "Envase de cartón. Textura firme, ideal para repostería",
-          "Vida útil de 3 meses",
+          "Formato de 10 kg y 25 kg",
+          "Envase en pote de cartón, apto para uso alimentario",
+          "Vida útil prolongada",
         ],
       },
       {
@@ -225,9 +225,9 @@ export const products: Product[] = [
         weight: "10/25kg",
         subtitle: "Banana",
         features: [
-          "Formato de 25 kg: familiar, repostero y heladero",
-          "Envase primario en bolsa plástica y secundario en pote de cartón",
-          "Vida útil de 1 año",
+          "Formato de 10 kg y 25 kg",
+          "Envase en pote de cartón, apto para uso alimentario",
+          "Vida útil prolongada",
         ],
       }
     ],
